@@ -19,12 +19,12 @@ hashMap.put(some-key, some-value);
 3) get function, to recive a value out of a key, tends to O(1) complexity wise 
 
 ```c#
-VALUETYPE output = outhashMap.get(some-key);
+VALUETYPE output = hashMap.get(some-key);
 ```
 4) you can also use '[]' operator to recive a value out of a key:
 
 ```c#
-VALUETYPE output = outhashMap.[some-key];
+VALUETYPE output = hashMap.[some-key];
 ```
 
 * in both cases if the key is not found the next message will be recived, and the value returned will be the default value of the value type
