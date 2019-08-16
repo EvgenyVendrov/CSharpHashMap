@@ -5,6 +5,8 @@ VisualStudioVersion = 16.0.29102.190
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HashMapImplementation", "HashMapImplementation\HashMapImplementation.csproj", "{E851AB1D-F8B6-4A79-8BF0-F6459845E56F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HashMap.UnitTests", "HashMap.UnitTests\HashMap.UnitTests.csproj", "{AAC20AA9-1E61-41A0-9BB6-CA8F856598E2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{E851AB1D-F8B6-4A79-8BF0-F6459845E56F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E851AB1D-F8B6-4A79-8BF0-F6459845E56F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E851AB1D-F8B6-4A79-8BF0-F6459845E56F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AAC20AA9-1E61-41A0-9BB6-CA8F856598E2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AAC20AA9-1E61-41A0-9BB6-CA8F856598E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AAC20AA9-1E61-41A0-9BB6-CA8F856598E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AAC20AA9-1E61-41A0-9BB6-CA8F856598E2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

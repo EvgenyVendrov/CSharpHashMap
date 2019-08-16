@@ -38,7 +38,7 @@ namespace HashMapImplementation
                 //we don't allow same key for diffrent elements in the map
                 if (current.Key.CompareTo(key) == 0)
                 {
-                    Console.WriteLine("there is already such a key in this hashmap");
+                    Console.WriteLine("ERROR: there is already such a key '{0}' in this hashmap",key);
                     return;
                 }
                 while (current.hasNextNode())
@@ -46,7 +46,7 @@ namespace HashMapImplementation
                     //we don't allow same key for diffrent elements in the map
                     if (current.Key.CompareTo(key) == 0)
                     {
-                        Console.WriteLine("there is already such a key in this hashmap");
+                        Console.WriteLine("ERROR: there is already such a key '{0}' in this hashmap", key);
                         return;
                     }
                     current = current.NextNode;
@@ -69,7 +69,7 @@ namespace HashMapImplementation
             if (_innerArray[index] == null)
             {
                 //in case there is no such key - will print the error and return def value of the type
-                Console.WriteLine("ERROR: there is no such key, returning default value");
+                Console.WriteLine("ERROR: there is no such a key '{0}', returning default value",key);
                 return default(V);
             }
 
@@ -89,7 +89,7 @@ namespace HashMapImplementation
                         }
 
                     }
-                    Console.WriteLine("ERROR: there is no such key, returning default value");
+                    Console.WriteLine("ERROR: there is no such a key '{0}', returning default value", key);
                     return default(V);
 
                 }
