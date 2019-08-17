@@ -46,7 +46,7 @@
     <Compile Include="HashMapEnum.cs" />
     <Compile Include="KeyValuePair.cs" />
     <Compile Include="MyHashMap.cs" />
-    <Compile Include="Program.cs" />
+    <Compile Include="ExampleMain.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
