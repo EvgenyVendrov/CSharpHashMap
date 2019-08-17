@@ -10,7 +10,41 @@ namespace HashMapImplementation
     {
         static void Main(string[] args)
         {
-            //building 
+            ////building 
+            //MyHashMap<char, int> test = new MyHashMap<char, int>();
+
+            //for (char i = 'a'; i <= 'z'; i++)
+            //{
+            //    test.put(i, i - '0');
+            //}
+
+
+            ////now printing all elements using foreach
+            //foreach (var elem in test)
+            //{
+            //    Console.WriteLine(elem);
+            //}
+
+            //Console.WriteLine("***************************************************");
+
+            ////testing the bool thing
+            //foreach (var elem in test)
+            //{
+            //    Console.WriteLine(elem);
+            //}
+
+            ////should print an error message as there already such a key
+            //test.put('f', 56);
+
+            ////searching elements by their key:
+            //Console.WriteLine(test.get('a'));//should return 49
+            //Console.WriteLine(test.get('b'));//should return 50
+            //Console.WriteLine(test.get('z'));//shoud return 74
+            //Console.WriteLine(test.get('@'));//should print error message and return def value of char (0)
+
+            ////searching a key with '[]' operator
+            //Console.WriteLine(test['f']);//should print 54
+
             MyHashMap<char, int> test = new MyHashMap<char, int>();
 
             for (char i = 'a'; i <= 'z'; i++)
@@ -18,32 +52,40 @@ namespace HashMapImplementation
                 test.put(i, i - '0');
             }
 
+            test.printTheHashMap();
 
-            //now printing all elements using foreach
-            foreach (var elem in test)
+
+
+            //var counter = 1;
+            //foreach (var elem in test)
+            //{
+            //    Console.WriteLine("count =>"+counter++);
+            //    Console.WriteLine(elem);
+            //}
+
+
+
+
+
+            for (char i = 'a'; i <= 'z'; i++)
             {
-                Console.WriteLine(elem);
+
+                Console.WriteLine(test.get(i));
             }
 
-            Console.WriteLine("***************************************************");
+            //MyHashMap<char, int> test = new MyHashMap<char, int>();
+            //for (char i = 'a'; i <= 'z'; i++)
+            //{
+            //    Console.WriteLine(test.put(i, i - '0'));
 
-            //testing the bool thing
-            foreach (var elem in test)
-            {
-                Console.WriteLine(elem);
-            }
+            //}
+            //Console.WriteLine("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%55");
+            //for (char i = 'a'; i <= 'z'; i++)
+            //{
+            //    Console.WriteLine(test.put(i, i - '0'));
+            //}
 
-            //should print an error message as there already such a key
-            test.put('f', 56);
-
-            //searching elements by their key:
-            Console.WriteLine(test.get('a'));//should return 49
-            Console.WriteLine(test.get('b'));//should return 50
-            Console.WriteLine(test.get('z'));//shoud return 74
-            Console.WriteLine(test.get('@'));//should print error message and return def value of char (0)
-
-            //searching a key with '[]' operator
-            Console.WriteLine(test['f']);//should print 54
+            //Console.WriteLine((int)'a');
         }
     }
 }

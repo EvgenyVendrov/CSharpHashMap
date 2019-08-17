@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace HashMapImplementation
 {
-    class MyHashMap<K, V> : IEnumerable where K : IComparable
+    public class MyHashMap<K, V> : IEnumerable where K : IComparable
     {
         //fields:
         private const int _startSize = 13;
@@ -21,44 +21,23 @@ namespace HashMapImplementation
         //public functions: 
 
         //put function used to set a key of values into the map
-        public void put(K key, V value)
+        public bool put(K key, V value)
         {
-            //calculating the index of the key based on 'getHasheCode' function 
-            int index = calcThisKeyIndex(key, _innerArray.Length);
-            //case the cell is empty
-            if (_innerArray[index] == null)
+            var newPair = new KeyValuePair<K, V>(key, value);
+            bool flag = findElementsRightSpot(_innerArray, newPair);
+            if (flag)
             {
-                _innerArray[index] = new KeyValuePair<K, V>(key, value);
-            }
-
-            //case we have to 'go down' few nodes before we place the element
-            else
-            {
-                var current = _innerArray[index];
-                //we don't allow same key for diffrent elements in the map
-                if (current.Key.CompareTo(key) == 0)
-                {
-                    Console.WriteLine("ERROR: there is already such a key '{0}' in this hashmap",key);
-                    return;
-                }
-                while (current.hasNextNode())
-                {
-                    //we don't allow same key for diffrent elements in the map
-                    if (current.Key.CompareTo(key) == 0)
-                    {
-                        Console.WriteLine("ERROR: there is already such a key '{0}' in this hashmap", key);
-                        return;
-                    }
-                    current = current.NextNode;
-                }
-                current.NextNode = new KeyValuePair<K, V>(key, value);
                 ++_numOfElemInArray;//keeping track of the amount of elements in the map 
-                //this is done to make sure we wont have a 'too filled' map which will tend more to O(n) rather O(1)
+                                    //this is done to make sure we wont have a 'too filled' map which will tend more to O(n) rather O(1)
                 if (_numOfElemInArray >= (_innerArray.Length * 0.7))
                 {
                     _innerArray = resizeArray();//this function will deep-copy the inner array to expand it - while keeping all the elements well placed 
                 }
+
             }
+
+            return flag;
+
         }
 
         //get function used to retrive a value based on the given key 
@@ -69,7 +48,7 @@ namespace HashMapImplementation
             if (_innerArray[index] == null)
             {
                 //in case there is no such key - will print the error and return def value of the type
-                Console.WriteLine("ERROR: there is no such a key '{0}', returning default value",key);
+                Console.WriteLine("ERROR: there is no such a key '{0}', returning default value", key);
                 return default(V);
             }
 
@@ -112,7 +91,7 @@ namespace HashMapImplementation
         public HashMapEnum<K, V> GetEnumerator()
         {
             resetTheFlags();
-            return new HashMapEnum<K,V>(_innerArray);
+            return new HashMapEnum<K, V>(_innerArray);
         }
 
         IEnumerator IEnumerable.GetEnumerator()
@@ -120,7 +99,7 @@ namespace HashMapImplementation
             return (IEnumerator)GetEnumerator();
         }
 
-        
+
         //used mainly to print the map for debug purposes
         public void printTheHashMap()
         {
@@ -147,24 +126,26 @@ namespace HashMapImplementation
             KeyValuePair<K, V>[] output = new KeyValuePair<K, V>[_innerArray.Length + _stepSize];
             foreach (var elem in _innerArray)
             {
+                //found new element
                 if (elem != null)
                 {
-                    int index = calcThisKeyIndex(elem.Key, output.Length);
-                    output[index] = new KeyValuePair<K, V>(elem.Key, elem.Value);
+                    //finding it the right spot
+                    findElementsRightSpot(output, elem);
+
+                    //if this elment has 'children' 
                     if (elem.hasNextNode())
                     {
-                        var current = elem;
-                        var arrayNode = output[index];
-                        while (current != null && current.hasNextNode())
+                        var c = elem.NextNode;
+                        while (c.hasNextNode())
                         {
-                            current = current.NextNode;
-                            arrayNode.NextNode = new KeyValuePair<K, V>(current.Key, current.Value);
-                            arrayNode = arrayNode.NextNode;
-
+                            findElementsRightSpot(output, c);
+                            c = c.NextNode;
                         }
                     }
+
                 }
             }
+
             return output;
         }
 
@@ -197,6 +178,39 @@ namespace HashMapImplementation
             }
         }
 
+        private bool findElementsRightSpot(KeyValuePair<K, V>[] innerArray, KeyValuePair<K, V> element)
+        {
+            int index = calcThisKeyIndex(element.Key, innerArray.Length);
+            //checking if this new index is taken
+            if (innerArray[index] != null)
+            {
+                var current = innerArray[index];
+                if (current.Key.CompareTo(element.Key) == 0)
+                {
+                    Console.WriteLine("ERROR: there is already such a key '{0}' in this HashMap", element.Key);
+                    return false;
+                }
+                while (current != null && current.hasNextNode())
+                {
+                    current = current.NextNode;
+                    if (current.Key.CompareTo(element.Key) == 0)
+                    {
+                        Console.WriteLine("ERROR: there is already such a key '{0}' in this HashMap", element.Key);
+                        return false;
+                    }
+                }
+                current.NextNode = element;
+                return true;
+
+            }
+            //if this node isn't taken
+            else
+            {
+                innerArray[index] = element;
+                return true;
+            }
+
+        }
 
 
 

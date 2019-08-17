@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 namespace HashMapImplementation
 {
     //the Enum class which provides the ability to use 'foreach' and 'linq' on the hashmap DS
-    class HashMapEnum<K,V> : IEnumerator where K:IComparable
+    public class HashMapEnum<K,V> : IEnumerator where K:IComparable
     {
-        public KeyValuePair<K,V>[] _hashMapElems;
+        private KeyValuePair<K,V>[] _hashMapElems;
         int position = -1;
         
         //ctor

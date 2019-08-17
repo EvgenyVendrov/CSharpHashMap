@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace HashMapImplementation
 {
-    class KeyValuePair <K,V>
+    public class KeyValuePair <K,V>
     {
         
         public KeyValuePair(K key, V value)
